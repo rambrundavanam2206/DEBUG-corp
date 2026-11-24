@@ -1,0 +1,21 @@
+[project]
+name = "debug-corp-api"
+version = "0.1.0"
+description = "DEBUGGER authentication and project foundation"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi==0.165.0",
+    "uvicorn==0.54.0",
+    "httpx[socks]==0.28.1",
+    "pydantic-settings==2.16.3",
+]
+
+[dependency-groups]
+dev = ["pytest==9.2.0", "respx==0.23.1", "ruff==0.17.6"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100

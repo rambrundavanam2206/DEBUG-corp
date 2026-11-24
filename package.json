@@ -1,0 +1,27 @@
+{
+  "name": "debug-corp",
+  "version": "1.0.0",
+  "description": "DEBUGGER phased MVP",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "npm --prefix frontend run build",
+    "test:web": "npm --prefix frontend test",
+    "test:api": "uv run --directory backend --locked pytest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rambrundavanam2206/DEBUG-corp.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/rambrundavanam2206/DEBUG-corp/issues"
+  },
+  "homepage": "https://github.com/rambrundavanam2206/DEBUG-corp#readme",
+  "devDependencies": {
+    "supabase": "3.3.0"
+  },
+  "private": true
+}

@@ -12,6 +12,7 @@ class Project(BaseModel):
     id: UUID
     name: str
     source_type: Literal["zip", "github"]
+    status: str = "pending"
     created_at: datetime
     updated_at: datetime
 
@@ -26,7 +27,7 @@ async def list_projects(request: Request, user: AuthenticatedUser) -> list[Proje
                 "Authorization": f"Bearer {user.token}",
             },
             params={
-                "select": "id,name,source_type,created_at,updated_at",
+                "select": "id,name,source_type,status,created_at,updated_at",
                 "owner_id": f"eq.{user.id}",
                 "order": "created_at.desc",
                 "limit": "100",

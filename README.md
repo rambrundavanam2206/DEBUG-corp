@@ -71,3 +71,12 @@ Phase 1 creates no paid hosting resources. Deployment is a later phase. The plan
 ## Secret handling
 
 Previously shared provider/backend secrets must be rotated. Enter replacements in backend environment settings only when a later phase needs them. Never put secrets in source code, screenshots, logs, issues, or pull requests. `.env.example` files are placeholders only.
+
+
+## Phase 2: project inputs
+
+On the `feat/phase-2-project-input` branch, open Projects → New project. Supply a public GitHub URL or ZIP and a terminal error/problem description. Reproduction steps are optional. Source import, read/search, problem editing, retry and deletion are available; AI diagnosis starts in Phase 3.
+
+Existing Phase 1 environment values are sufficient; no service-role or AI provider key is required. Migrations are already applied to the connected DEBUG-corp Supabase project. For a fresh Supabase project, apply all migration files in version order using your authorized migration tooling.
+
+See [Phase 2 implementation and acceptance checklist](docs/PHASE_2.md) for limits and testing.

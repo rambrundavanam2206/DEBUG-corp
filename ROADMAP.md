@@ -11,7 +11,7 @@ This document records the agreed project plan. Read it when continuing developme
 - Main agent investigates and delegates to relevant frontend/backend/database specialists.
 - Output: evidence-based diagnosis and ONE rectification prompt with file references and verification steps.
 - User's local coding agent verifies current code, applies the fix, and runs tests. Accept follow-up errors and updated code.
-- Initial focus: JavaScript/TypeScript and Python projects.
+- Initial focus: JavaScript/TypeScript and Python projects; Phase 2 also imports C/C++ text, including the user-provided `.CPP` sample.
 - Do not execute uploaded code on the server in this MVP. Live telemetry, dependency graphs and sandboxed fix validation are later scope.
 
 ## Phases
@@ -19,8 +19,8 @@ This document records the agreed project plan. Read it when continuing developme
 | Phase | Deliverables | Completion check | Status |
 | --- | --- | --- | --- |
 | 1. Foundation | Repository structure, React UI, FastAPI, Supabase login, database access policies | Login and frontend/backend connection work; access policies verified | Accepted — automated/API/RLS/CI passed; user reported all local manual checks passed (2026-11-24). |
-| 2. Project input | ZIP upload, public GitHub import, error/reproduction form, file search/read | Sample project safely imports and source files can be read | Pending |
-| 3. AI debugging | Main agent first; relevant sub-agents; Gemini/Groq integration | Known bugs produce useful diagnoses supported by evidence | Pending |
+| 2. Project input | ZIP upload, public GitHub import, error/reproduction form, file search/read | Sample project safely imports and source files can be read | Accepted — automated/live checks passed; user reports local workflow working (2026-11-24) |
+| 3. AI debugging | Main agent first; relevant sub-agents; Gemini/Groq integration | Known bugs produce useful diagnoses supported by evidence | Planning; see docs/PHASE_3_PLAN.md |
 | 4. Results & follow-up | Rectification prompt, copy/download, history, progress, retry | Complete upload-to-diagnosis-to-prompt flow works | Pending |
 | 5. Deployment | Vercel + Render free setup, limits, cleanup, end-to-end testing | Complete workflow passes on hosted site | Pending |
 
@@ -43,4 +43,4 @@ Never commit secret keys. Previously shared secrets must be rotated. Ask the use
 
 ## Continuation notes
 
-The user authorized phased implementation and testing, continuing between phases without repeated approval within agreed scope. GitHub, Vercel and Render plugins are connected; Supabase project access is verified. Phase 1 implementation and evidence are recorded in docs/PHASE_1.md. Phase 1 is accepted as of 2026-11-24: automated/API/RLS/CI evidence plus user-reported local manual acceptance checks. Phase 2 is next; hosted deployment remains Phase 5.
+The user authorized phased implementation and testing, continuing between phases without repeated approval within agreed scope. GitHub, Vercel and Render plugins are connected; Supabase project access is verified. Phase 1 implementation and evidence are recorded in docs/PHASE_1.md. Phase 1 is accepted as of 2026-11-24: automated/API/RLS/CI evidence plus user-reported local manual acceptance checks. Phase 2 implementation and verification are recorded in docs/PHASE_2.md. The user accepted Phase 2 after local testing on 2026-11-24. Phase 3 planning is recorded in docs/PHASE_3_PLAN.md; hosted deployment remains Phase 5.

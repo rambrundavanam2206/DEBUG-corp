@@ -1,7 +1,8 @@
 from functools import lru_cache
+from typing import Literal
 from urllib.parse import urlparse
 
-from pydantic import field_validator
+from pydantic import Field, SecretStr, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -10,6 +11,13 @@ class Settings(BaseSettings):
 
     supabase_url: str
     supabase_publishable_key: str
+    gemini_api_key: SecretStr = SecretStr("")
+    groq_api_key: SecretStr = SecretStr("")
+    gemini_model: str = Field(default="", max_length=200)
+    groq_model: str = Field(default="", max_length=200)
+    ai_primary_provider: Literal["gemini", "groq"] = "gemini"
+    ai_fallback_enabled: bool = False
+    ai_free_tier_confirmed: bool = False
     cors_origins: list[str] = ["http://localhost:5173"]
 
     @field_validator("supabase_url")
@@ -40,7 +48,8 @@ class Settings(BaseSettings):
             urlparse(origin).scheme not in ("http", "https")
             or not urlparse(origin).hostname
             or urlparse(origin).path not in ("", "/")
-            or urlparse(origin).query or urlparse(origin).fragment
+            or urlparse(origin).query
+            or urlparse(origin).fragment
             or urlparse(origin).username
             for origin in origins
         ):

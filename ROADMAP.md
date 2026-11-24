@@ -20,7 +20,7 @@ This document records the agreed project plan. Read it when continuing developme
 | --- | --- | --- | --- |
 | 1. Foundation | Repository structure, React UI, FastAPI, Supabase login, database access policies | Login and frontend/backend connection work; access policies verified | Accepted — automated/API/RLS/CI passed; user reported all local manual checks passed (2026-11-24). |
 | 2. Project input | ZIP upload, public GitHub import, error/reproduction form, file search/read | Sample project safely imports and source files can be read | Accepted — automated/live checks passed; user reports local workflow working (2026-11-24) |
-| 3. AI debugging | Main agent first; relevant sub-agents; Gemini/Groq integration | Known bugs produce useful diagnoses supported by evidence | Planning; see docs/PHASE_3_PLAN.md |
+| 3. AI debugging | Main agent first; relevant sub-agents; Gemini/Groq integration | Known bugs produce useful diagnoses supported by evidence | Implemented; automated checks passed; real-provider and local browser acceptance pending |
 | 4. Results & follow-up | Rectification prompt, copy/download, history, progress, retry | Complete upload-to-diagnosis-to-prompt flow works | Pending |
 | 5. Deployment | Vercel + Render free setup, limits, cleanup, end-to-end testing | Complete workflow passes on hosted site | Pending |
 
@@ -43,4 +43,4 @@ Never commit secret keys. Previously shared secrets must be rotated. Ask the use
 
 ## Continuation notes
 
-The user authorized phased implementation and testing, continuing between phases without repeated approval within agreed scope. GitHub, Vercel and Render plugins are connected; Supabase project access is verified. Phase 1 implementation and evidence are recorded in docs/PHASE_1.md. Phase 1 is accepted as of 2026-11-24: automated/API/RLS/CI evidence plus user-reported local manual acceptance checks. Phase 2 implementation and verification are recorded in docs/PHASE_2.md. The user accepted Phase 2 after local testing on 2026-11-24. Phase 3 planning is recorded in docs/PHASE_3_PLAN.md; hosted deployment remains Phase 5.
+The user authorized phased implementation and testing, continuing between phases without repeated approval within agreed scope. GitHub, Vercel and Render plugins are connected; Supabase project access is verified. Phase 1 implementation and evidence are recorded in docs/PHASE_1.md. Phase 1 is accepted as of 2026-11-24: automated/API/RLS/CI evidence plus user-reported local manual acceptance checks. Phase 2 implementation and verification are recorded in docs/PHASE_2.md. The user accepted Phase 2 after local testing on 2026-11-24. Phase 3 implementation and verification limits are recorded in docs/PHASE_3.md; hosted deployment remains Phase 5.

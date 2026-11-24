@@ -8,6 +8,7 @@ dependencies = [
     "uvicorn==0.54.0",
     "httpx[socks]==0.28.1",
     "pydantic-settings==2.16.3",
+    "openai-agents==0.26.0",
 ]
 
 [dependency-groups]

@@ -80,3 +80,10 @@ On the `feat/phase-2-project-input` branch, open Projects → New project. Suppl
 Existing Phase 1 environment values are sufficient; no service-role or AI provider key is required. Migrations are already applied to the connected DEBUG-corp Supabase project. For a fresh Supabase project, apply all migration files in version order using your authorized migration tooling.
 
 See [Phase 2 implementation and acceptance checklist](docs/PHASE_2.md) for limits and testing.
+
+
+## Phase 3: AI investigation
+
+The `feat/phase-3-ai-debugging` branch adds Analyze issue, bounded main/specialist agents, evidence validation and saved diagnosis/rectification prompts. Run `uv sync --project backend --locked` after switching branches to install the pinned agent SDK.
+
+Configure fresh provider keys and model names in `backend/.env`; see [Phase 3 setup, limits and acceptance](docs/PHASE_3.md). No OpenAI or Supabase service-role key is needed. Default operation performs no inference until the provider and free-tier confirmation are configured. Real-provider diagnosis quality and local browser acceptance are still required.

@@ -106,3 +106,19 @@ async def search_files(
 async def delete_project(project_id: UUID, request: Request, user=Depends(current_user)):
     await Workspace(request, user).delete(project_id)
     return {"deleted": True}
+
+
+@router.get('/ai/config')
+async def ai_config(request: Request, user=Depends(current_user)):
+    from app.ai.providers import configuration
+    return configuration(request.app.state.settings)
+
+@router.get('/projects/{project_id}/analysis')
+async def latest_analysis(project_id: UUID, request: Request, user=Depends(current_user)):
+    from app.services.analyses import Analyses
+    return await Analyses(request, user).latest(project_id)
+
+@router.post('/projects/{project_id}/analysis')
+async def start_analysis(project_id: UUID, request: Request, user=Depends(current_user)):
+    from app.services.analyses import Analyses
+    return await Analyses(request, user).start(project_id)

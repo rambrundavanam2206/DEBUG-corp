@@ -4,7 +4,7 @@ Implementation date: 2026-11-24. Scope: authentication, protected dashboard, bac
 
 ## Status
 
-**Implemented and automated checks passed.** Manual browser visual QA and real email-confirmation delivery remain pending. Do not describe the hosted product or the complete five-phase project as finished.
+**Accepted on 2026-11-24.** Automated/API/RLS/CI checks passed and the user reported that all local manual acceptance checks passed. Do not describe the hosted product or the complete five-phase project as finished.
 
 ## Implemented
 
@@ -41,18 +41,28 @@ RLS requires the JWT subject to match `profiles.id` or `projects.owner_id`. UPDA
 | Live refresh and logout | Refresh produced accepted token; logout revoked refresh |
 | Supabase security advisor after migration | No findings |
 | Test-account cleanup | Temporary QA users deleted; associated records cascade deleted |
-| Real email confirmation delivery | Pending user-controlled email and Auth URL/email configuration |
-| Browser visual/mobile QA | Blocked by managed preview startup: Node uv_interface_addresses error |
-| GitHub Actions | Configured; remote run result must be checked after push |
+| Signup and email confirmation → login | Passed per user's local acceptance report (2026-11-24) |
+| Browser navigation and mobile layout | Passed per user's local acceptance report; not assistant-observed browser testing |
+| GitHub Actions | Frontend, backend and credential checks passed for implementation commit f9329335aa59e732a2fff62e901961434ce3f4f0; [run](https://github.com/rambrundavanam2206/DEBUG-corp/actions/runs/45431213452) |
 
 The live API check used temporary test accounts provisioned only for validation; it does not prove the signup email delivery path. SQL ownership fixtures were rolled back. No test password or access token belongs in the repository.
 
-## Remaining acceptance checks
+## Completed manual acceptance
 
-1. In Supabase Authentication URL Configuration, allow the actual local/preview callback URL (`http://localhost:5173/auth/callback` for local development). Preserve existing production settings. See README.
-2. Use an email you control to sign up, open its confirmation link, and sign in. Default email delivery may require SMTP configuration. Never disable confirmation solely to make the test pass.
-3. Verify dashboard refresh, navigation, sign out, and responsive layout in a working browser preview. The current environment's preview infrastructure failed before a browser could open it; browser rendering is not claimed as verified.
-4. Check GitHub Actions results once the branch is published.
+The user reported all eight checks passed locally on 2026-11-24:
+
+| Check | User-reported result |
+| --- | --- |
+| Signup | Confirmation flow passed |
+| Email confirmation → login | Dashboard opened |
+| Wrong password | Error displayed |
+| Dashboard refresh | Session retained |
+| Account / Build progress | Corresponding pages opened |
+| Projects | Empty workspace and authenticated connection status displayed |
+| Logout → `/app` | Redirected to login |
+| Mobile browser resize | Navigation and layout usable |
+
+These are user-reported results, not assistant-observed browser tests. The assistant's managed preview had failed at startup with a Node `uv_interface_addresses` error; the user's local browser checks supply the manual acceptance evidence. Hosted deployment has not been tested and remains Phase 5.
 
 ## Security and operational limits
 

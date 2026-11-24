@@ -76,7 +76,7 @@ Migration `20261124181506_phase_3_analysis_records.sql` is already applied to th
 - Security advisor: no analysis-table/RLS findings. Existing Auth leaked-password-protection warning remains; no paid/auth setting was changed. https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection
 - Live Supabase API integration passed with a scripted SDK provider: actual GitHub import → investigation/evidence validation → saved result → reload → cross-user denial → changed-problem stale detection → project/source/analysis cleanup. No real model inference was performed. Temporary users and source objects were removed; sessions revoked.
 - Browser visual/mobile QA not performed: managed preview infrastructure previously failed at startup with uv_interface_addresses and there is no evidence of recovery. User local acceptance is required.
-- CI status is recorded after publishing the branch.
+- GitHub CI passed on implementation commit `71ba4e4`: backend, frontend and credential checks. Run: https://github.com/rambrundavanam2206/DEBUG-corp/actions/runs/45459930180 . The initially published lock file was incomplete; it was restored byte-for-byte from the tested local version before this successful run.
 
 Injection tests verify the tool boundary and prompt/data separation; they cannot guarantee that any model is immune to prompt injection. Evidence validation checks reference integrity, not the semantic correctness of a suggested fix.
 

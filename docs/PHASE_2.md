@@ -1,6 +1,6 @@
 # Phase 2 — Project input
 
-Implemented 2026-11-24. Status: automated and live API verification complete; local browser acceptance pending. No AI diagnosis or hosting deployment in this phase.
+Implemented 2026-11-24. Status: accepted on 2026-11-24. Automated/live checks passed and the user reported the local Phase 2 workflow working. This user report supplies acceptance; it is not assistant-observed browser QA. No AI diagnosis or hosting deployment in this phase.
 
 ## User flow
 
@@ -59,4 +59,4 @@ Use the same frontend/backend environment configuration as Phase 1. No model key
 7. Verify the third-project limit and fourth-project rejection. Delete a project; confirm it disappears and a new slot becomes available.
 8. Check mobile layout, source scrolling, logout protection and existing login flow.
 
-Phase 2 is accepted only after the manual checks pass. AI analysis and rectification prompts remain Phase 3.
+The user accepted Phase 2 after local testing on 2026-11-24. AI analysis and rectification prompts remain Phase 3.

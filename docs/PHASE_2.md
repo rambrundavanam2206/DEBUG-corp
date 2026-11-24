@@ -43,8 +43,8 @@ The final migration qualifies outer Storage object names in correlated ownership
 - SQL ownership regression and Phase 2 quota/Storage/identity/orphan checks passed using rolled-back fixtures. Storage deletes are tested through the Storage API, not direct SQL.
 - Security advisor: no database/Storage policy findings; existing Auth setting warns that leaked-password protection is disabled. [Supabase guidance](https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection). No paid/auth setting was changed.
 - Managed preview failed before browser startup with Node `uv_interface_addresses` / `ERR_SYSTEM_ERROR`; status confirmed stopped. Browser visual/mobile QA is unverified and requires local acceptance.
-- A transient Auth 503 occurred during a later QA cleanup request; deletion was retried separately.
-- GitHub Actions status is recorded after publishing the branch.
+- A transient Auth 503 occurred during a later QA cleanup request; retry succeeded. Temporary project/source data and both QA users were removed; sessions were revoked. Verified zero remaining QA users/objects.
+- GitHub Actions frontend, backend and credential jobs passed for implementation commit `d8628f864321597776ff1cc03c4b55bf6487d879`: [verification run](https://github.com/rambrundavanam2206/DEBUG-corp/actions/runs/45453959236).
 
 ## Local manual acceptance
 

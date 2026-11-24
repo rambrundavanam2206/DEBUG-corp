@@ -3,9 +3,12 @@ begin;
 insert into auth.users(id) values
 ('a3cf9ef1-b6d1-4982-b7d1-7ef6fdac1001'),
 ('a3cf9ef1-b6d1-4982-b7d1-7ef6fdac1002');
-insert into public.projects(id, owner_id, name, source_type) values
-('a3cf9ef1-b6d1-4982-b7d1-7ef6fdac2001', 'a3cf9ef1-b6d1-4982-b7d1-7ef6fdac1001', 'A project', 'zip'),
-('a3cf9ef1-b6d1-4982-b7d1-7ef6fdac2002', 'a3cf9ef1-b6d1-4982-b7d1-7ef6fdac1002', 'B project', 'github');
+select set_config('request.jwt.claims', '{"sub":"a3cf9ef1-b6d1-4982-b7d1-7ef6fdac1001","role":"authenticated"}', true);
+insert into public.projects(id,owner_id,name,source_type) values
+('a3cf9ef1-b6d1-4982-b7d1-7ef6fdac2001','a3cf9ef1-b6d1-4982-b7d1-7ef6fdac1001','A project','zip');
+select set_config('request.jwt.claims', '{"sub":"a3cf9ef1-b6d1-4982-b7d1-7ef6fdac1002","role":"authenticated"}', true);
+insert into public.projects(id,owner_id,name,source_type) values
+('a3cf9ef1-b6d1-4982-b7d1-7ef6fdac2002','a3cf9ef1-b6d1-4982-b7d1-7ef6fdac1002','B project','github');
 insert into public.profiles(id, display_name) values
 ('a3cf9ef1-b6d1-4982-b7d1-7ef6fdac1001', 'A'),
 ('a3cf9ef1-b6d1-4982-b7d1-7ef6fdac1002', 'B');

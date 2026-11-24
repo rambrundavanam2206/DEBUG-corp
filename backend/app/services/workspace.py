@@ -48,7 +48,11 @@ class Workspace:
             raise HTTPException(503, "Project storage is unavailable. Please retry.") from None
         if response.status_code in (401, 403):
             raise HTTPException(403, "Project access denied or session expired.")
+        if response.status_code == 409:
+            raise HTTPException(409, "An analysis is already running. Refresh its status before retrying.")
         if response.status_code >= 400:
+            if "analysis_quota" in response.text:
+                raise HTTPException(429, "Analysis limit reached: 10 runs per account per day, 30 stored runs per project.")
             if "project_limit" in response.text:
                 raise HTTPException(
                     409, "You can keep up to 3 projects. Delete one before importing another."

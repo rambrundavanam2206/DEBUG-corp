@@ -28,6 +28,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app = FastAPI(title="DEBUGGER API", version="0.1.0", lifespan=lifespan)
     app.state.settings = settings
     app.state.import_slots = asyncio.Semaphore(2)
+    app.state.analysis_slots = asyncio.Semaphore(1)
     app.add_middleware(
         CORSMiddleware,
         allow_origins=settings.cors_origins,

@@ -6,6 +6,7 @@ import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Routes, Route } from 'react-router-dom'
 import { NewProject, ProjectWorkspace } from './Projects'
 vi.mock('./auth', () => ({ useAuth: () => ({ session: { access_token: 'test-token' } }) }))
+vi.mock('./AnalysisPanel', () => ({ AnalysisPanel: () => <div>Analysis panel</div> }))
 vi.mock('./config', () => ({ config: { apiUrl: '' } }))
 const project = { id: 'p1', name: 'Tic Tac Toe', source_type: 'github', status: 'ready', repo_url: 'https://github.com/test/repo', branch: 'main', commit_sha: 'a'.repeat(40), problem: 'compiler error', command: '', expected: '', reproduction: '', manifest: [{ path: 'TICTAC.CPP', size: 40, lines: 2 }], skipped: [], import_error: '' }
 function show(path: string) { return render(<MemoryRouter initialEntries={[path]}><Routes><Route path="/new" element={<NewProject />} /><Route path="/app/projects/:projectId" element={<ProjectWorkspace />} /></Routes></MemoryRouter>) }
@@ -63,10 +64,10 @@ it('saves problem details and requires explicit delete confirmation', async () =
   expect(screen.getByRole('button', { name: 'Delete permanently' })).toBeInTheDocument()
   expect(vi.mocked(fetch).mock.calls.some(([, o]) => o?.method === 'DELETE')).toBe(false)
 })
-it('failed ZIP retry asks for file and never claims diagnosis is ready', async () => {
+it('failed ZIP retry asks for file before analysis', async () => {
   vi.mocked(fetch).mockResolvedValue(respond({ ...project, source_type: 'zip', status: 'failed', import_error: 'Invalid ZIP', manifest: [] }))
   show('/app/projects/p1')
   await waitFor(() => expect(screen.getByRole('button', { name: 'Import / retry' })).toBeDisabled())
   expect(screen.getByLabelText('Select ZIP again to retry')).toBeInTheDocument()
-  expect(screen.getByText(/AI diagnosis and rectification prompts arrive in Phase 3/)).toBeInTheDocument()
+  expect(screen.getByText('Analysis panel')).toBeInTheDocument()
 })

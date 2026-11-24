@@ -1,3 +1,4 @@
+import { AnalysisPanel } from './AnalysisPanel'
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ArrowLeft, FileCode2, GitBranch, Upload, LoaderCircle, Search, Trash2 } from 'lucide-react'
@@ -98,7 +99,7 @@ export function ProjectWorkspace() {
         <div className="source-explorer"><aside className="file-list"><label htmlFor="file-filter">Files</label><input id="file-filter" placeholder="Filter paths…" value={filter} onChange={e => setFilter(e.target.value)} />{project.manifest.filter(f => f.path.toLowerCase().includes(filter.toLowerCase())).map(f => <button key={f.path} className={view?.path === f.path ? 'selected' : ''} onClick={() => openFile(f.path)} title={f.path}><FileCode2 size={15} /><span>{f.path}</span></button>)}</aside><div className="code-panel">{view ? <><div className="code-toolbar"><strong>{view.path}</strong><span>{view.total_lines} lines</span></div><pre>{view.lines.map((line, i) => <div key={i}><span className="line-number">{view.start + i}</span><code>{line || ' '}</code></div>)}</pre><div className="code-paging"><button disabled={view.start <= 1} onClick={() => openFile(view.path, Math.max(1, view.start - 200))}>Previous lines</button><button disabled={view.start + view.lines.length > view.total_lines} onClick={() => openFile(view.path, view.start + 200)}>Next lines</button></div></> : <div className="code-placeholder"><FileCode2 size={30} /><p>Select a file to read its source.</p></div>}</div></div>
       </section>}
       {project.skipped.length > 0 && <details className="project-form"><summary>{project.skipped.length} skipped files</summary><ul className="skip-list">{project.skipped.map(f => <li key={f.path}><code>{f.path}</code> — {f.reason}</li>)}</ul></details>}
-      <p className="form-hint">AI diagnosis and rectification prompts arrive in Phase 3. Importing does not run or analyse your code.</p>
+      <AnalysisPanel projectId={project.id} ready={project.status === 'ready'} revision={project.updated_at} onEvidence={(path, line) => { void openFile(path, line); document.querySelector('.source-section')?.scrollIntoView({ behavior: 'smooth' }) }} />
       <section className="delete-area">{confirmDelete ? <><p>Delete this project and its stored source files?</p><button className="danger-button" disabled={busy} onClick={remove}>Delete permanently</button><button className="secondary" disabled={busy} onClick={() => setConfirmDelete(false)}>Cancel</button></> : <button className="quiet-button" disabled={busy} onClick={() => setConfirmDelete(true)}><Trash2 size={16} />Delete project</button>}</section>
     </>}
   </main>

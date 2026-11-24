@@ -1,6 +1,6 @@
 # Phase 3 — AI debugging implementation plan
 
-Status: planned, not implemented. Phase 2 was accepted by the user on 2026-11-24.
+Status: implemented; see PHASE_3.md for verification evidence and remaining real-provider/browser acceptance. Phase 2 was accepted by the user on 2026-11-24.
 
 ## Goal
 
